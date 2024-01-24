@@ -33,34 +33,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Empty
+BUILD_ARTIFACT_NAME := STM32_DS1307_I2C
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Empty.elf \
+STM32_DS1307_I2C.elf \
 
 MAP_FILES += \
-Empty.map \
+STM32_DS1307_I2C.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Empty.list \
+STM32_DS1307_I2C.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Empty.elf secondary-outputs
+main-build: STM32_DS1307_I2C.elf secondary-outputs
 
 # Tool invocations
-Empty.elf Empty.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\Empty\ project\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Empty.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\Empty project\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Empty.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32_DS1307_I2C.elf STM32_DS1307_I2C.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_DS1307_I2C\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32_DS1307_I2C.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_DS1307_I2C\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DS1307_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +69,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Empty.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Empty.list"
+STM32_DS1307_I2C.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32_DS1307_I2C.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Empty.elf Empty.list Empty.map default.size.stdout
+	-$(RM) STM32_DS1307_I2C.elf STM32_DS1307_I2C.list STM32_DS1307_I2C.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
