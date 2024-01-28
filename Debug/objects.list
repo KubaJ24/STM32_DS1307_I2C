@@ -1,3 +1,4 @@
+"./Inc/DS1307_I2C.o"
 "./Inc/i2c1.o"
 "./Src/main.o"
 "./Src/syscalls.o"

@@ -8,6 +8,9 @@
 #ifndef I2C1_H_
 #define I2C1_H_
 
+#include <stdint.h>
+#include "stm32f746xx.h"
+
 void I2C1_GPIO_CONF(void);
 
 void I2C1_CONF(void);
