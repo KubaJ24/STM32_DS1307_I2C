@@ -25,7 +25,9 @@
 
 int main(void)
 {
-    /* Loop forever */
+
+	I2C1_GPIO_CONF();
+
 	while(1){
 
 	}
