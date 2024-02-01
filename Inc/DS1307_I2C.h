@@ -30,6 +30,11 @@
  */
 #define SECONDS_REG_CLEAR		0x00
 
+/*
+ * Zerowanie bitu 12/24H - włącza tryb 24h
+ */
+#define HOURS_REG_CLEAR			0x00
+
 #include <stdint.h>
 #include "stm32f746xx.h"
 #include "i2c1.h"
@@ -38,5 +43,27 @@
  * Włącza oscylator - zasilanie rejstrów zegara
  */
 void DS1307_I2C_ENABLE_OSCILLATOR(void);
+
+/*
+ * Ustawia tryb 24h
+ */
+void DS1307_SET_24H_MODE(void);
+
+/*
+ * Konfiguruje zegar:
+ * 	- Włącza oscylator
+ * 	- Ustawia tryb 24h
+ */
+void DS1307_INIT_CONF(void);
+
+/*
+ * Ustawia czas zapisany w zmiennych uint8_t SEC, MIN, HOUR
+ */
+void DS1307_SET_TIME(uint8_t SEC, uint8_t MIN, uint8_t HOUR);
+
+/*
+ * Ustawia czas zapisany w zmiennych uint8_t DAY, DATE, MONTH, YEAR
+ */
+void DS1307_SET_DATE(uint8_t DAY, uint8_t DATE, uint8_t MONTH, uint8_t YEAR);
 
 #endif /* DS1307_I2C_H_ */
