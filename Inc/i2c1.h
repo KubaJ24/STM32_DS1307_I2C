@@ -11,6 +11,9 @@
 #include <stdint.h>
 #include "stm32f746xx.h"
 
+#define I2C1_WRITE		1
+#define I2C1_READ		0
+
 void I2C1_GPIO_CONF(void);
 
 void I2C1_CONF(void);
@@ -19,6 +22,7 @@ void I2C1_CONF(void);
  * Ustawia adres urządzenia docelowego i wysyła bit START
  * Ustawia I2C na wysyłanie
  * Funkcja kończy działanie, gdy wyzeruje się bit START (wysłano START i adres)
+ * Może być konieczność użycia makra I2C1_WRITE (RTC przyjmuje 1 na LSB dla zapisu)
  */
 void I2C1_SELECT_AND_START_WR(uint8_t Address);
 
@@ -26,6 +30,7 @@ void I2C1_SELECT_AND_START_WR(uint8_t Address);
  * Ustawia adres urządzenia docelowego i wysyła bit START
  * Ustawia I2C na odczyt
  * Funkcja kończy działanie, gdy wyzeruje się bit START (wysłano START i adres)
+ * Może być konieczność użycia makra I2C1_READ (RTC przyjmuje 0 na LSB dla odczytu)
  */
 void I2C1_SELECT_AND_START_RD(uint8_t Address);
 
@@ -58,7 +63,7 @@ static inline void I2C1_STOP(void) { I2C1->CR2 |= I2C_CR2_STOP; }
 /*
  * Ustawia adres urządznia docelowego
  */
-static inline void I2C1_SET_ADDR(uint8_t Address) { I2C1->CR2 |= (Address << 1); }
+static inline void I2C1_SET_ADDR(uint8_t Address) { I2C1->CR2 |= Address; }
 
 /*
  * Ustawia I2C na wysyłanie danych
