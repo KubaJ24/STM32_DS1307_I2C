@@ -23,10 +23,34 @@
  * SDA	PB9
  */
 
+// Przed wgraniem ustawić czas początkowy
+uint8_t SEC;
+uint8_t	MIN;
+uint8_t HOUR;
+uint8_t DAY;
+uint8_t DATE;
+uint8_t MONTH;
+// Rok liczony od 2000, tj 0 -> 2000, 1 -> 2001 itd.
+uint8_t YEAR;
+
+uint8_t *ptr_SEC = & SEC;
+uint8_t	*ptr_MIN = & MIN;
+uint8_t *ptr_HOUR = & HOUR;
+uint8_t *ptr_DAY = & DAY;
+uint8_t *ptr_DATE = & DATE;
+uint8_t *ptr_MONTH = & MONTH;
+uint8_t *ptr_YEAR = & YEAR;
+
 int main(void)
 {
 
 	I2C1_GPIO_CONF();
+	I2C1_CONF();
+
+	DS1307_INIT_CONF();
+
+	DS1307_SET_TIME(SEC, MIN, HOUR);
+	DS1307_SET_DATE(DAY, DATE, MONTH, YEAR);
 
 	while(1){
 

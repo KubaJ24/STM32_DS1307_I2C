@@ -11,8 +11,8 @@
 #include <stdint.h>
 #include "stm32f746xx.h"
 
-#define I2C1_WRITE		1
-#define I2C1_READ		0
+#define I2C1_WRITE		0
+#define I2C1_READ		1
 
 void I2C1_GPIO_CONF(void);
 
