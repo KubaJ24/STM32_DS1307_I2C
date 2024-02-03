@@ -23,6 +23,9 @@
  * SDA	PB9
  */
 
+// Zmienna do SysTick Timera - funkcja Delay
+uint32_t Tick;
+
 // Przed wgraniem ustawić czas początkowy
 uint8_t SEC;
 uint8_t	MIN;
@@ -41,8 +44,29 @@ uint8_t *ptr_DATE = & DATE;
 uint8_t *ptr_MONTH = & MONTH;
 uint8_t *ptr_YEAR = & YEAR;
 
+
+
+void SysTick_Handler(void){
+	//INCREASE SYSTEM TIMER
+	Tick++;
+}
+
+void DELAY(uint32_t Delay_ms){
+    uint32_t StartTime = Tick;
+    while(Tick < (StartTime + Delay_ms))
+    {
+        // Just wait
+    }
+}
+
+/*
+ * Funkcja główna programu
+ */
+
 int main(void)
 {
+
+	SysTick_Config(16000000/1000);
 
 	I2C1_GPIO_CONF();
 	I2C1_CONF();
