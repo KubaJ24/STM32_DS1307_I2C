@@ -78,5 +78,14 @@ int main(void)
 
 	while(1){
 
+		DELAY(1000);
+
+		DS1307_GET_TIME(ptr_SEC, ptr_MIN, ptr_HOUR);
+		DS1307_GET_DATE(ptr_DAY, ptr_DATE, ptr_MONTH, ptr_YEAR);
+
+		// Potrzebny Semihosting
+		//printf("Godzina: %d : %d : %d", HOUR, MIN, SEC);
+		//printf("        Data: %d / %d / %d / 20%d\n", DAY, DATE, MONTH, YEAR);
+
 	}
 }
