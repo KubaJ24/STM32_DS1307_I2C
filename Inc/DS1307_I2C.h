@@ -66,4 +66,14 @@ void DS1307_SET_TIME(uint8_t SEC, uint8_t MIN, uint8_t HOUR);
  */
 void DS1307_SET_DATE(uint8_t DAY, uint8_t DATE, uint8_t MONTH, uint8_t YEAR);
 
+/*
+ * Pobiera czas z zegara i ustawia z zmiennych, na które wskazują wskaźniki *ptr_SEC, *ptr_MIN, *ptr_HOUR
+ */
+void DS1307_GET_TIME(uint8_t *ptr_SEC, uint8_t *ptr_MIN, uint8_t *ptr_HOUR);
+
+/*
+ * Pobiera datę z zegara i ustawia z zmiennych, na które wskazują wskaźniki *ptr_SEC, *ptr_MIN, *ptr_HOUR
+ */
+void DS1307_GET_DATE(uint8_t *ptr_DAY, uint8_t *ptr_DATE, uint8_t *ptr_MONTH, uint8_t *ptr_YEAR);
+
 #endif /* DS1307_I2C_H_ */
