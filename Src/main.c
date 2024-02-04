@@ -26,23 +26,22 @@
 // Zmienna do SysTick Timera - funkcja Delay
 uint32_t Tick;
 
-// Przed wgraniem ustawić czas początkowy
-uint8_t SEC;
-uint8_t	MIN;
-uint8_t HOUR;
-uint8_t DAY;
-uint8_t DATE;
-uint8_t MONTH;
+uint8_t SEC = 0;
+uint8_t	MIN = 0;
+uint8_t HOUR = 0;
+uint8_t DAY = 0;
+uint8_t DATE = 0;
+uint8_t MONTH = 0;
 // Rok liczony od 2000, tj 0 -> 2000, 1 -> 2001 itd.
-uint8_t YEAR;
+uint8_t YEAR = 0;
 
-uint8_t *ptr_SEC = & SEC;
-uint8_t	*ptr_MIN = & MIN;
-uint8_t *ptr_HOUR = & HOUR;
-uint8_t *ptr_DAY = & DAY;
-uint8_t *ptr_DATE = & DATE;
-uint8_t *ptr_MONTH = & MONTH;
-uint8_t *ptr_YEAR = & YEAR;
+uint8_t *ptr_SEC = &SEC;
+uint8_t	*ptr_MIN = &MIN;
+uint8_t *ptr_HOUR = &HOUR;
+uint8_t *ptr_DAY = &DAY;
+uint8_t *ptr_DATE = &DATE;
+uint8_t *ptr_MONTH = &MONTH;
+uint8_t *ptr_YEAR = &YEAR;
 
 
 
@@ -59,10 +58,6 @@ void DELAY(uint32_t Delay_ms){
     }
 }
 
-static inline uint8_t bcd2bin(uint8_t n) { return ((((n >> 4) & 0x0F) * 10) + (n & 0x0F)); }
-
-static inline uint8_t bin2bcd(uint8_t n) { return (((n / 10) << 4) | (n % 10)); }
-
 /*
  * Funkcja główna programu
  */
@@ -71,6 +66,19 @@ int main(void)
 {
 
 	SysTick_Config(16000000/1000);
+
+	/*
+	 * Czas początkowy:
+	 * 08:00:00
+	 * 1 (poniedziałek), 1/3/2024
+	 */
+	SEC = bin2bcd(0);
+	MIN = bin2bcd(0);
+	HOUR = bin2bcd(8);
+	DAY = bin2bcd(1);
+	DATE = bin2bcd(1);
+	MONTH = bin2bcd(3);
+	YEAR = bin2bcd(24);
 
 	I2C1_GPIO_CONF();
 	I2C1_CONF();
@@ -83,13 +91,14 @@ int main(void)
 	while(1){
 
 		DELAY(1000);
+		DELAY(1000);
 
 		DS1307_GET_TIME(ptr_SEC, ptr_MIN, ptr_HOUR);
 		DS1307_GET_DATE(ptr_DAY, ptr_DATE, ptr_MONTH, ptr_YEAR);
 
 		// Potrzebny Semihosting
-		//printf("Godzina: %d : %d : %d", HOUR, MIN, SEC);
-		//printf("        Data: %d / %d / %d / 20%d\n", DAY, DATE, MONTH, YEAR);
+		//printf("Godzina: %d : %d : %d", bcd2bin(HOUR), bcd2bin(MIN), bcd2bin(SEC));
+		//printf("        Data: %d / %d / %d / 20%d\n", bcd2bin(DAY), bcd2bin(DATE), bcd2bin(MONTH), bcd2bin(YEAR));
 
 	}
 }
