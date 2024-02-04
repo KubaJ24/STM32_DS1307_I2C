@@ -59,6 +59,10 @@ void DELAY(uint32_t Delay_ms){
     }
 }
 
+static inline uint8_t bcd2bin(uint8_t n) { return ((((n >> 4) & 0x0F) * 10) + (n & 0x0F)); }
+
+static inline uint8_t bin2bcd(uint8_t n) { return (((n / 10) << 4) | (n % 10)); }
+
 /*
  * Funkcja główna programu
  */
