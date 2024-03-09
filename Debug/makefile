@@ -61,7 +61,7 @@ main-build: STM32_DS1307_I2C.elf secondary-outputs
 
 # Tool invocations
 STM32_DS1307_I2C.elf STM32_DS1307_I2C.map: $(OBJS) $(USER_OBJS) C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_DS1307_I2C\STM32F746ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32_DS1307_I2C.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_DS1307_I2C\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DS1307_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "STM32_DS1307_I2C.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\ahadz\OneDrive\Pulpit\Projekty_2\STM32\STM32_DS1307_I2C\STM32F746ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32_DS1307_I2C.map" -Wl,--gc-sections -static -specs=rdimon.specs --specs=nano.specs -mfpu=fpv5-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

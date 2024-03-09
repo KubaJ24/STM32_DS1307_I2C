@@ -67,6 +67,8 @@ int main(void)
 
 	SysTick_Config(16000000/1000);
 
+	initialise_monitor_handles();
+
 	/*
 	 * Czas początkowy:
 	 * 08:00:00
@@ -96,9 +98,9 @@ int main(void)
 		DS1307_GET_TIME(ptr_SEC, ptr_MIN, ptr_HOUR);
 		DS1307_GET_DATE(ptr_DAY, ptr_DATE, ptr_MONTH, ptr_YEAR);
 
-		// Potrzebny Semihosting
-		//printf("Godzina: %d : %d : %d", bcd2bin(HOUR), bcd2bin(MIN), bcd2bin(SEC));
-		//printf("        Data: %d / %d / %d / 20%d\n", bcd2bin(DAY), bcd2bin(DATE), bcd2bin(MONTH), bcd2bin(YEAR));
+		printf("Godzina: %d : %d : %d", bcd2bin(HOUR), bcd2bin(MIN), bcd2bin(SEC));
+		printf("        Data: %d / %d / %d / 20%d\n", bcd2bin(DAY), bcd2bin(DATE), bcd2bin(MONTH), bcd2bin(YEAR));
+
 
 	}
 }
