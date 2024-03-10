@@ -10,8 +10,9 @@
 
 /*
  * Pierwotny 7-bitowy adres zegara to 0x68. W definicji jest przesunięty o 1 w lewo. Przy wysłaniu, do LSB wpisuje się 1 lub 0 w zależności od kierunku transmisji.
+ * 	- w wersji z gałęzi 'MASTER' jest 0xD0.
  */
-#define DS1307_ADDRESS			0xD0
+#define DS1307_ADDRESS			0x68
 
 /*
  * Adresy rejestrów zegara

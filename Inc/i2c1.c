@@ -54,8 +54,8 @@ void I2C1_CONF(void){
 }
 
 void I2C1_SELECT_AND_START_WR(uint8_t Address){
-	I2C1_SET_ADDR(Address);
-	I2C1_SET_WRITE();
+	I2C1_SET_ADDR(Address | I2C1_WRITE);
+	//I2C1_SET_WRITE();
 	I2C1_SET_1_BYTE_TRANSFER();
 	I2C1_START();
 
@@ -63,8 +63,8 @@ void I2C1_SELECT_AND_START_WR(uint8_t Address){
 }
 
 void I2C1_SELECT_AND_START_RD(uint8_t Address){
-	I2C1_SET_ADDR(Address);
-	I2C1_SET_READ();
+	I2C1_SET_ADDR(Address | I2C1_READ);
+	//I2C1_SET_READ();
 	I2C1_SET_1_BYTE_TRANSFER();
 	I2C1_SEND_NACK();
 	I2C1_START();

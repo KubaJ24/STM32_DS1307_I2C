@@ -1,7 +1,5 @@
 ../Inc/i2c1.h:56:20:I2C1_START	4	static
 ../Inc/i2c1.h:66:20:I2C1_SET_ADDR	16	static
-../Inc/i2c1.h:71:20:I2C1_SET_WRITE	4	static
-../Inc/i2c1.h:76:20:I2C1_SET_READ	4	static
 ../Inc/i2c1.h:81:20:I2C1_SET_1_BYTE_TRANSFER	4	static
 ../Inc/i2c1.h:86:20:I2C1_WAIT_FOR_START	4	static
 ../Inc/i2c1.h:93:20:I2C1_WAIT_FOR_TXDR_EMPTY	4	static

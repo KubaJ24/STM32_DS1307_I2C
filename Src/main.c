@@ -16,6 +16,11 @@
  ******************************************************************************
  */
 
+/*
+ * W tej wersji zakomentowane jest ustawianie READ/WRITE bitowo z rejestrze a dodane na sztywno.
+ * Inna opcja to będzie powrót do wersji ustawiania READ/WRITE bitowo z rejestrze, ponieważ zmieniono adres urządzenia - wersja bez sztucznego przesunięcia
+ */
+
 #include "main.h"
 
 /*
@@ -44,6 +49,8 @@ uint8_t *ptr_MONTH = &MONTH;
 uint8_t *ptr_YEAR = &YEAR;
 
 
+
+extern void initialise_monitor_handles();
 
 void SysTick_Handler(void){
 	//INCREASE SYSTEM TIMER
