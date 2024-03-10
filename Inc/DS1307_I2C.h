@@ -16,7 +16,7 @@
 /*
  * Adresy rejestrów zegara
  */
-#define SECONDS_REG				0x00
+#define SECONDS_REG				0x12
 #define MINUTES_REG				0x01
 #define HOURS_REG				0x02
 #define DAYS_REG				0x03

@@ -20,7 +20,7 @@ void I2C1_GPIO_CONF(void){
 	//PULL UP
 	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR8_0 | GPIO_PUPDR_PUPDR9_0;
 	//ALTERNATE FUNCTION SELECT (AF4)
-	GPIOB->AFR[1] |= (0x45 << 0) | (0x4 << 4);
+	GPIOB->AFR[1] |= (0x4 << 0) | (0x4 << 4);
 }
 
 void I2C1_CONF(void){
@@ -45,6 +45,9 @@ void I2C1_CONF(void){
 
 	//NOSTRECH BIT CLEARED (STM IN MASTER MODE)
 	I2C1->CR1 &= ~(I2C_CR1_NOSTRETCH);
+
+	//SET OWN ADDRESS
+	I2C1->OAR1 |= 0x03 << 1;
 
 	//PERIPHERAL ENABLE
 	I2C1->CR1 |= I2C_CR1_PE;
@@ -72,7 +75,8 @@ void I2C1_SELECT_AND_START_RD(uint8_t Address){
 void I2C1_SEND_BYTE(uint8_t Byte){
 	I2C1_WAIT_FOR_TXDR_EMPTY();
 	I2C1->TXDR = Byte;
-	I2C1_WAIT_FOR_TR_COMPLETE();
+	printf("%d\n", Byte);
+	I2C1_WAIT_FOR_TXDR_EMPTY();
 }
 
 uint8_t I2C1_READ_BYTE(void){

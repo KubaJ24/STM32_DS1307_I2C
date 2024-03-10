@@ -85,10 +85,18 @@ int main(void)
 	I2C1_GPIO_CONF();
 	I2C1_CONF();
 
+	printf("I2C skonfigurowane\n");
+
 	DS1307_INIT_CONF();
+
+	printf("DS1307 skonfigurowany\n");
 
 	DS1307_SET_TIME(SEC, MIN, HOUR);
 	DS1307_SET_DATE(DAY, DATE, MONTH, YEAR);
+
+	printf("Czas początkowy:\n");
+	printf("Godzina: %d : %d : %d", bcd2bin(HOUR), bcd2bin(MIN), bcd2bin(SEC));
+	printf("        Data: %d / %d / %d / 20%d\n", bcd2bin(DAY), bcd2bin(DATE), bcd2bin(MONTH), bcd2bin(YEAR));
 
 	while(1){
 
